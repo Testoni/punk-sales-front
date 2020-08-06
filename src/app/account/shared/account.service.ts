@@ -33,5 +33,10 @@ export class AccountService {
       resolve(true);
     });*/
   }
+
+  getAuthorizationToken() {
+    const token = window.localStorage.getItem('token');
+    return token;
+  }
   
 }

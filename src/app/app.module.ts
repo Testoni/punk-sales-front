@@ -9,6 +9,7 @@ import { LoginComponent } from './account/login/login.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { HomeComponent } from './layout/home/home.component';
 import { AuthenticationComponent } from './layout/authentication/authentication.component';
+import { httpInterceptorProviders } from './http-interceptors/';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { AuthenticationComponent } from './layout/authentication/authentication.
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
