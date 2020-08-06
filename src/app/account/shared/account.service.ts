@@ -64,5 +64,16 @@ export class AccountService {
 
     return !(date.valueOf() > new Date().valueOf());
   }
+
+  isUserLoggedIn() {
+    const token = this.getAuthorizationToken();
+    if (!token) {
+      return false;
+    } else if (this.isTokenExpired()) {
+      return false;
+    }
+
+    return true;
+  }
   
 }
