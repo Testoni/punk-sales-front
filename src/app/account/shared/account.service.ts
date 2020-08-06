@@ -51,5 +51,18 @@ export class AccountService {
     date.setUTCSeconds(decoded.exp);
     return date;
   }
+
+  isTokenExpired(token?: string): boolean {
+    if (!token) {
+      return true;
+    }
+
+    const date = this.getTokenExpirationDate(token);
+    if (date === undefined) {
+      return false;
+    }
+
+    return !(date.valueOf() > new Date().valueOf());
+  }
   
 }
