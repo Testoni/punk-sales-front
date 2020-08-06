@@ -1,6 +1,7 @@
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,18 @@ export class AccountService {
   getAuthorizationToken() {
     const token = window.localStorage.getItem('token');
     return token;
+  }
+
+  getTokenExpirationDate(token: string): Date {
+    const decoded: any = jwt_decode(token);
+
+    if (decoded.exp === undefined) {
+      return null;
+    }
+
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
   }
   
 }
